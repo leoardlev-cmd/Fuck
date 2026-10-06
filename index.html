@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Маме и Папе — неделя в Питере</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f7f3ee;
+            --text: #2e2a26;
+            --accent: #5b6e54;      /* спокойный зелёный */
+            --accent-soft: #9bb08f;
+            --card: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        header {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 90px 0 50px;
+            text-align: center;
+        }
+
+        header .eyebrow {
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-soft);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1.15;
+            margin-bottom: 25px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: #6b625a;
+        }
+
+        /* Вступительное слово */
+        .intro {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #4a443e;
+        }
+
+        .intro p { margin-bottom: 18px; }
+
+        /* Сетка дней */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding-bottom: 90px;
+        }
+
+        .day-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        .day-card {
+            background: var(--card);
+            border-radius: 18px;
+            padding: 34px 34px 34px 44px;
+            box-shadow: 0 8px 28px rgba(91, 110, 84, 0.07);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 38px rgba(91, 110, 84, 0.13);
+        }
+
+        .day-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0;
+            height: 100%; width: 6px;
+            background: linear-gradient(var(--accent), var(--accent-soft));
+        }
+
+        .day-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--accent-soft);
+            line-height: 1;
+            margin-bottom: 8px;
+            opacity: 0.6;
+        }
+
+        .day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .day-content p {
+            font-size: 1.05rem;
+            margin-bottom: 14px;
+        }
+
+        .day-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .day-content li {
+            padding-left: 26px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .day-content li::before {
+            content: '—';
+            color: var(--accent-soft);
+            position: absolute;
+            left: 0;
+            font-weight: 600;
+        }
+
+        .highlight {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        /* Финальное пожелание */
+        .finale {
+            max-width: 700px;
+            margin: 70px auto 0;
+            text-align: center;
+            background: var(--card);
+            border-radius: 18px;
+            padding: 50px 40px;
+            box-shadow: 0 8px 28px rgba(91, 110, 84, 0.07);
+            border-top: 4px solid var(--accent-soft);
+        }
+
+        .finale p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #4a443e;
+            margin-bottom: 18px;
+        }
+
+        .finale .signature {
+            font-style: normal;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 25px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: #a99f96;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 60px 0 30px; }
+            h1 { font-size: 2rem; }
+            .subtitle { font-size: 1.05rem; }
+            .day-card { padding: 26px 22px 26px 32px; }
+            .day-num { font-size: 1.8rem; }
+            .day-title { font-size: 1.2rem; }
+            .finale { padding: 35px 25px; }
+            .finale p { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="eyebrow">Для самых родных</div>
+        <h1>Мама и Папа,<br>эта неделя — для вас</h1>
+        <p class="subtitle">Семь дней в Санкт-Петербурге, где можно отдохнуть и набраться сил</p>
+    </header>
+
+    <div class="intro">
+        <p>Дорогие мои, я хочу, чтобы эта поездка стала для вас настоящим отдыхом — без забот, без готовки, без быта. Просто гуляйте, отдыхайте и набирайтесь хороших впечатлений.</p>
+        <p>Ниже — мои пожелания на каждый день. Это вовсе не строгий план, а просто повод улыбнуться и провести время так, как вам захочется.</p>
+    </div>
+
+    <div class="container">
+        <div class="day-grid">
+
+            <!-- День 1 -->
+            <div class="day-card">
+                <div class="day-num">01</div>
+                <div class="day-title">День первый — приезд и отдых с дороги</div>
+                <div class="day-content">
+                    <p>Пусть дорога пройдёт спокойно, а вечером вы просто выйдете прогуляться и подышать воздухом.</p>
+                    <ul>
+                        <li>Неспешная прогулка по <span class="highlight">Невскому проспекту</span>.</li>
+                        <li>Ужин в уютном месте — без спешки и готовки.</li>
+                        <li>Первый вечерний вид на город и пара фотографий на память.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- День 2 -->
+            <div class="day-card">
+                <div class="day-num">02</div>
+                <div class="day-title">День второй — красивые виды</div>
+                <div class="day-content">
+                    <p>Пусть этот день будет про красоту, которой можно просто любоваться.</p>
+                    <ul>
+                        <li>Подъём на <span class="highlight">колоннаду Исаакиевского собора</span> — весь Питер как на ладони.</li>
+                        <li><span class="highlight">Спас на Крови</span> — задержитесь внутри подольше, там очень красиво.</li>
+                        <li>Прогулка по центру и отдых в кафе, когда устанете.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- День 3 -->
+            <div class="day-card">
+                <div class="day-num">03</div>
+                <div class="day-title">День третий — искусство без спешки</div>
+                <div class="day-content">
+                    <p>День для Эрмитажа — но без гонки. Смотрите только то, что откликается.</p>
+                    <ul>
+                        <li>Залы <span class="highlight">Эрмитажа</span> в своём темпе, с остановками и отдыхом.</li>
+                        <li>Кофе с пирожным в кафе на <span class="highlight">Дворцовой площади</span>.</li>
+                        <li>Вечером — спокойный отдых в номере или короткая прогулка.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- День 4 -->
+            <div class="day-card">
+                <div class="day-num">04</div>
+                <div class="day-title">День четвёртый — прогулка по каналам</div>
+                <div class="day-content">
+                    <p>Самый спокойный день — вода, виды и неспешность.</p>
+                    <ul>
+                        <li>Прогулка на <span class="highlight">катере по каналам</span> — красиво и без нагрузок.</li>
+                        <li>Петроградская сторона: уютные дворики и старые дома.</li>
+                        <li>Отдых на <span class="highlight">стрелке Васильевского острова</span> с видом на воду.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- День 5 -->
+            <div class="day-card">
+                <div class="day-num">05</div>
+                <div class="day-title">День пятый — Петергоф</div>
+                <div class="day-content">
+                    <p>Пусть этот день будет светлым и прогулочным — как в молодости.</p>
+                    <ul>
+                        <li>Поездка в <span class="highlight">Петергоф</span> на «Метеоре» — уже само по себе приключение.</li>
+                        <li>Большой каскад фонтанов — обязательно загадайте желание.</li>
+                        <li>Обед у моря и неспешная дорога обратно.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- День 6 -->
+            <div class="day-card">
+                <div class="day-num">06</div>
+                <div class="day-title">День шестой — отдых по вашему желанию</div>
+                <div class="day-content">
+                    <p>Никаких обязательных музеев. Только то, что захочется именно вам.</p>
+                    <ul>
+                        <li>Завтрак в кофейне на <span class="highlight">улице Рубинштейна</span>.</li>
+                        <li>Прогулка по <span class="highlight">Новой Голландии</span> или <span class="highlight">Летнему саду</span>.</li>
+                        <li>Вечером — хороший ужин или просто спокойный отдых.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- День 7 -->
+            <div class="day-card">
+                <div class="day-num">07</div>
+                <div class="day-title">День седьмой — тёплое прощание</div>
+                <div class="day-content">
+                    <p>Пусть последний день будет медленным. Не торопитесь.</p>
+                    <ul>
+                        <li>Утренний кофе с видом на <span class="highlight">Исаакий</span>.</li>
+                        <li>Покупка маленьких сувениров — для себя и для меня.</li>
+                        <li>Спокойный сбор и дорога домой с хорошими впечатлениями.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Финал -->
+        <div class="finale">
+            <p>Мама, Папа — вы заслужили этот отдых больше всех. Отдыхайте, гуляйте, набирайтесь сил и никуда не спешите.</p>
+            <p>А я буду ждать вас дома и слушать ваши истории.</p>
+            <div class="signature">С любовью, ваш ребёнок</div>
+        </div>
+    </div>
+
+    <footer>
+        Санкт-Петербург · одна неделя · для вас двоих
+    </footer>
+
+</body>
+</html>
